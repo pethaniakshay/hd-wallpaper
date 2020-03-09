@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.0.1
+-- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 22, 2018 at 12:24 PM
--- Server version: 10.1.32-MariaDB
--- PHP Version: 7.2.5
+-- Generation Time: Mar 02, 2020 at 10:53 AM
+-- Server version: 10.4.10-MariaDB
+-- PHP Version: 7.3.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `hd_wallpaper_new`
+-- Database: `db`
 --
 
 -- --------------------------------------------------------
@@ -53,7 +53,7 @@ CREATE TABLE `tbl_category` (
   `cid` int(11) NOT NULL,
   `category_name` varchar(255) NOT NULL,
   `category_image` varchar(255) NOT NULL,
-  `status` int(1) NOT NULL DEFAULT '1'
+  `status` int(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -81,7 +81,7 @@ CREATE TABLE `tbl_rating` (
   `user_id` varchar(255) NOT NULL,
   `ip` varchar(255) NOT NULL,
   `rate` int(11) NOT NULL,
-  `dt_rate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `dt_rate` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -96,8 +96,46 @@ CREATE TABLE `tbl_rating_gif` (
   `user_id` varchar(255) NOT NULL,
   `ip` varchar(255) NOT NULL,
   `rate` int(11) NOT NULL,
-  `dt_rate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `dt_rate` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_rating_ringtone`
+--
+
+CREATE TABLE `tbl_rating_ringtone` (
+  `id` int(11) NOT NULL,
+  `post_id` int(11) NOT NULL,
+  `user_id` varchar(255) NOT NULL,
+  `ip` varchar(255) NOT NULL,
+  `rate` int(11) NOT NULL,
+  `dt_rate` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_ringtone`
+--
+
+CREATE TABLE `tbl_ringtone` (
+  `id` int(11) NOT NULL,
+  `ringtone` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `ringtone_tag` text CHARACTER SET utf8 NOT NULL,
+  `total_rate` int(11) NOT NULL,
+  `total_views` int(11) NOT NULL,
+  `rate_avg` decimal(11,2) NOT NULL,
+  `total_download` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_ringtone`
+--
+
+INSERT INTO `tbl_ringtone` (`id`, `ringtone`, `ringtone_tag`, `total_rate`, `total_views`, `rate_avg`, `total_download`) VALUES
+(1, '34233_41790-49468.mp3', 'funny,music', 0, 0, '0.00', 0);
 
 -- --------------------------------------------------------
 
@@ -120,10 +158,10 @@ CREATE TABLE `tbl_settings` (
   `app_description` text NOT NULL,
   `app_developed_by` varchar(255) NOT NULL,
   `app_privacy_policy` text NOT NULL,
-  `home_latest_limit` int(2) NOT NULL DEFAULT '10',
-  `home_most_viewed_limit` int(2) NOT NULL DEFAULT '10',
-  `home_most_rated_limit` int(2) NOT NULL DEFAULT '10',
-  `api_latest_limit` int(3) NOT NULL DEFAULT '15',
+  `home_latest_limit` int(2) NOT NULL DEFAULT 10,
+  `home_most_viewed_limit` int(2) NOT NULL DEFAULT 10,
+  `home_most_rated_limit` int(2) NOT NULL DEFAULT 10,
+  `api_latest_limit` int(3) NOT NULL DEFAULT 15,
   `api_cat_order_by` varchar(255) NOT NULL DEFAULT 'category_name',
   `api_cat_post_order_by` varchar(255) NOT NULL DEFAULT 'DESC',
   `api_gif_post_order_by` varchar(255) NOT NULL DEFAULT 'DESC',
@@ -161,10 +199,10 @@ CREATE TABLE `tbl_wallpaper` (
   `image_date` date NOT NULL,
   `image` varchar(255) NOT NULL,
   `wall_tags` text NOT NULL,
-  `total_rate` int(11) NOT NULL DEFAULT '0',
-  `rate_avg` decimal(11,0) DEFAULT '0',
-  `total_views` int(11) NOT NULL DEFAULT '0',
-  `total_download` int(11) NOT NULL DEFAULT '0'
+  `total_rate` int(11) NOT NULL DEFAULT 0,
+  `rate_avg` decimal(11,0) DEFAULT 0,
+  `total_views` int(11) NOT NULL DEFAULT 0,
+  `total_download` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -177,11 +215,18 @@ CREATE TABLE `tbl_wallpaper_gif` (
   `id` int(11) NOT NULL,
   `image` varchar(255) NOT NULL,
   `gif_tags` text NOT NULL,
-  `total_views` int(11) NOT NULL DEFAULT '0',
-  `total_rate` int(11) NOT NULL DEFAULT '0',
-  `rate_avg` decimal(11,2) NOT NULL DEFAULT '0.00',
-  `total_download` int(11) NOT NULL DEFAULT '0'
+  `total_views` int(11) NOT NULL DEFAULT 0,
+  `total_rate` int(11) NOT NULL DEFAULT 0,
+  `rate_avg` decimal(11,2) NOT NULL DEFAULT 0.00,
+  `total_download` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tbl_wallpaper_gif`
+--
+
+INSERT INTO `tbl_wallpaper_gif` (`id`, `image`, `gif_tags`, `total_views`, `total_rate`, `rate_avg`, `total_download`) VALUES
+(1, '29890_22CU.gif', 'funny', 0, 0, '0.00', 0);
 
 --
 -- Indexes for dumped tables
@@ -215,6 +260,18 @@ ALTER TABLE `tbl_rating`
 -- Indexes for table `tbl_rating_gif`
 --
 ALTER TABLE `tbl_rating_gif`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tbl_rating_ringtone`
+--
+ALTER TABLE `tbl_rating_ringtone`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tbl_ringtone`
+--
+ALTER TABLE `tbl_ringtone`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -270,6 +327,18 @@ ALTER TABLE `tbl_rating_gif`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `tbl_rating_ringtone`
+--
+ALTER TABLE `tbl_rating_ringtone`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `tbl_ringtone`
+--
+ALTER TABLE `tbl_ringtone`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `tbl_settings`
 --
 ALTER TABLE `tbl_settings`
@@ -285,7 +354,7 @@ ALTER TABLE `tbl_wallpaper`
 -- AUTO_INCREMENT for table `tbl_wallpaper_gif`
 --
 ALTER TABLE `tbl_wallpaper_gif`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

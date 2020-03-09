@@ -9,20 +9,19 @@
 		if($_SERVER['HTTP_HOST']=="localhost" or $_SERVER['HTTP_HOST']=="192.168.1.125")
 		{	
 			//local  
-
-				 DEFINE ('DB_USER', 'codepuran');
-				 DEFINE ('DB_PASSWORD', 'codepuran@412');
-				 DEFINE ('DB_HOST', 'localhost'); //host name depends on server
-				 DEFINE ('DB_NAME', 'hd_wallpaper_new');
+			 DEFINE ('DB_USER', 'id12781738_ringtone');
+			 DEFINE ('DB_PASSWORD', 'ringtone');
+			 DEFINE ('DB_HOST', 'localhost'); //host name depends on server
+ 			 DEFINE ('DB_NAME', 'id12781738_ringtone');
 		}
 		else
 		{
 			//local live 
 
-		 	 DEFINE ('DB_USER', 'codepuran');
-			 DEFINE ('DB_PASSWORD', 'codepuran@412');
+		 	 DEFINE ('DB_USER', 'id12781738_ringtone');
+			 DEFINE ('DB_PASSWORD', 'ringtone');
 			 DEFINE ('DB_HOST', 'localhost'); //host name depends on server
- 			 DEFINE ('DB_NAME', 'hd_wallpaper_new');
+ 			 DEFINE ('DB_NAME', 'id12781738_ringtone');
 		}
 
 	

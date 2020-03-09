@@ -12,6 +12,10 @@ $qry_wallpaper_gif="SELECT COUNT(*) as num FROM tbl_wallpaper_gif";
 $total_wallpaper_gif = mysqli_fetch_array(mysqli_query($mysqli,$qry_wallpaper_gif));
 $total_wallpaper_gif = $total_wallpaper_gif['num'];
 
+$qry_ringtone="SELECT COUNT(*) as num FROM tbl_ringtone";
+$total_ringtone = mysqli_fetch_array(mysqli_query($mysqli,$qry_ringtone));
+$total_ringtone = $total_ringtone['num'];
+
 
 $qry_wall_dwn="SELECT SUM(total_download) as num FROM tbl_wallpaper";
 $total_wall_download= mysqli_fetch_array(mysqli_query($mysqli,$qry_wall_dwn));
@@ -51,7 +55,17 @@ $total_gif_download = $total_gif_download['num'];
             <div class="value"><span class="sign"></span><?php echo $total_wallpaper_gif;?></div>
           </div>
         </div>
-        </a> </div>        
+        </a> </div>
+        
+        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12"> <a href="manage_ringtone.php" class="card card-banner card-blue-light">
+        <div class="card-body"> <i class="icon fa fa-music fa-4x"></i>
+          <div class="content">
+            <div class="title">Ringtone</div>
+            <div class="value"><span class="sign"></span><?php echo $total_ringtone;?></div>
+          </div>
+        </div>
+        </a> </div>      
+        
         <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 mr_bot60"> 
           <a href="manage_wallpaper.php" class="card card-banner card-pink-light">
         <div class="card-body"> <i class="icon fa fa-download fa-4x"></i>

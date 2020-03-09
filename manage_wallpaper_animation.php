@@ -67,7 +67,7 @@
         <div class="card mrg_bottom">
           <div class="page_title_block">
             <div class="col-md-5 col-xs-12">
-              <div class="page_title">Manage GIF</div>
+              <div class="page_title">Manage Ringtone</div>
             </div>
             <div class="col-md-7 col-xs-12">
               <div class="search_list">
@@ -77,7 +77,7 @@
                         <button type="submit" name="data_search" class="btn-search"><i class="fa fa-search"></i></button>
                   </form>  
                 </div> 
-                <div class="add_btn_primary"> <a href="add_wallpaper_animation.php">Add GIF</a> </div>
+                <div class="add_btn_primary"> <a href="add_wallpaper_animation.php">Add Ringtone</a> </div>
               </div>
             </div>
           </div>
@@ -105,15 +105,12 @@
                 <div class="block_wallpaper">           
                   <div class="wall_image_title">
                     <ul>
-                      <li><a href="javascript:void(0)" data-toggle="tooltip" data-tooltip="<?php echo $row['total_views'];?> Views"><i class="fa fa-eye"></i></a></li>                      
-                      <li><a href="javascript:void(0)" data-toggle="tooltip" data-tooltip="<?php echo $row['total_download'];?> Download"><i class="fa fa-download"></i></a></li>
-                      <li><a href="javascript:void(0)" data-toggle="tooltip" data-tooltip="<?php echo $row['rate_avg'];?> Rating"><i class="fa fa-star"></i></a></li>
-
+                      <?php echo $row['gif_tags'];?>
                       <li><a href="edit_wallpaper_animation.php?wallpaper_id=<?php echo $row['id'];?>" data-toggle="tooltip" data-tooltip="Edit"><i class="fa fa-edit"></i></a></li>
                       <li><a href="?wallpaper_id=<?php echo $row['id'];?>" data-toggle="tooltip" data-tooltip="Delete" onclick="return confirm('Are you sure you want to delete this GIF?');"><i class="fa fa-trash"></i></a></li>
                     </ul>
                   </div>
-                  <div><img src="images/animation/<?php echo $row['image'];?>" /></div>
+                  <div><img src="images/animation/<?php echo $row['image'];?>"/></div>
                 </div>
               </div>
          <?php

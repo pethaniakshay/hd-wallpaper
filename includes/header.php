@@ -58,6 +58,12 @@
           <div class="icon"> <i class="fa fa-leaf" aria-hidden="true"></i> </div>
           <div class="title">GIF</div>
           </a> 
+        </li>
+
+        <li <?php if($currentFile=="manage_ringtone.php" or $currentFile=="add_ringtone.php.php" or $currentFile=="edit_wallpaper_animation.php"){?>class="active"<?php }?>> <a href="manage_ringtone.php">
+          <div class="icon"> <i class="fa fa-music" aria-hidden="true"></i> </div>
+          <div class="title">Ringtone</div>
+          </a> 
         </li>        
          
         <li <?php if($currentFile=="send_notification.php"){?>class="active"<?php }?>> <a href="send_notification.php">
